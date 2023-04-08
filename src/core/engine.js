@@ -1,4 +1,4 @@
-export class Loop {
+export class Engine {
     #loopId = null
 
     #fps = 60

@@ -1,5 +1,5 @@
 import { Game } from './src/game.js'
-import { Loop } from './src/loop.js'
+import { Engine } from './src/core/engine.js'
 import { Player } from './src/player.js'
 
 const canvas = document.getElementById('canvas')
@@ -24,7 +24,7 @@ const game = new Game({
 	}
 })
 
-const loop = new Loop(() => {
+const loop = new Engine(() => {
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 
 	ctx.fillStyle = 'black'

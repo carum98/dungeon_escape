@@ -1,4 +1,4 @@
-import { CollisionBlock } from './collision-block.js'
+import { CollisionBlock } from './entities/collision-block.js'
 
 export class Level {
     constructor({ image, collisionsCoords }) {

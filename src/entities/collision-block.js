@@ -1,4 +1,4 @@
-import { GameElement } from './game-element.js'
+import { GameElement } from '../core/game-element.js'
 
 export class CollisionBlock extends GameElement {
     constructor({ x, y, width, height }) {
