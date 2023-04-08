@@ -1,4 +1,4 @@
-import { GameElement } from './core/game-element.js'
+import { Entity } from './entities/entity.js'
 
 const STATUS = {
 	idle: 'idle',
@@ -12,7 +12,7 @@ const SPRITES = {
 	[STATUS.jumping]: {},
 }
 
-export class Player extends GameElement {
+export class Player extends Entity {
 	constructor() {
 		super({
 			x: 50,
@@ -27,24 +27,7 @@ export class Player extends GameElement {
 		this.gravity = 1.8
 		this.velocity = 4
 
-		this.img = new Image()
-		this.img.src = './assets/img/player.png'
-
 		this.status = STATUS.idle
-	}
-
-	draw(ctx) {
-		ctx.drawImage(
-			this.img,
-			0,
-			0,
-			48,
-			this.img.height,
-			this.x - 18,
-			this.y - 18,
-			48,
-			this.img.height,
-		)
 	}
 
 	movements(controls) {

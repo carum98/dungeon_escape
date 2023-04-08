@@ -1,5 +1,9 @@
 {
     "image": "level-1.png",
+    "doorsCoords": {
+        "x": 12,
+        "y": 5
+    },
     "collisionsCoords": [
         {
             "x": 2,

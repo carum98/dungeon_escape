@@ -1,4 +1,4 @@
-import { Controls } from './controls.js'
+import { Controls } from './core/controls.js'
 import { LevelLoader } from './level.js'
 
 export class Game {
@@ -27,6 +27,14 @@ export class Game {
     update() {
         const { player, controls, level } = this
 
+        if (player.isColliding(level.door)) {
+            if (controls.direction.up) {
+                console.log('Next level')
+            }
+
+            controls.direction.up = false
+        }
+
         player.movements(controls)
         player.update()
         player.collision(level.collisions)
@@ -36,6 +44,8 @@ export class Game {
         const { player, ctx, level } = this
 
         ctx.drawImage(level.img, 0, 0)
+
+        level.door.draw(ctx)
 
         player.draw(ctx)
 

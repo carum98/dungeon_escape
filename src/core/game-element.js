@@ -7,6 +7,11 @@ export class GameElement {
         this.height = height
     }
 
+    draw(ctx) {
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.2)'
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+    }
+
     isColliding(element) {
         return (
             this.x <= element.x + element.width &&
