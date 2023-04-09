@@ -1,5 +1,13 @@
 {
     "image": "level-1.png",
+    "tiles": {
+        "width": 16,
+        "height": 9
+    },
+    "initialCoordsPlayer": {
+        "x": 3,
+        "y": 1
+    },
     "doorsCoords": {
         "x": 12,
         "y": 5
@@ -169,5 +177,6 @@
             "x": 13,
             "y": 7
         }
-    ]
+    ],
+    "platformCoords": []
 }

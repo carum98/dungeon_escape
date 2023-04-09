@@ -48,6 +48,8 @@ export class Controls {
     }
 
     #onKeyDown(event) {
+        Object.keys(KEY_CODES).includes(event.code) && event.preventDefault()
+
         if (event.code === KEY_CODES.Space) {
             this.direction[DIRECTIONS.UP] = !event.repeat
         } else {

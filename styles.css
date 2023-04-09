@@ -1,0 +1,16 @@
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: #3f3952;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas {
+    transform-origin: top left;
+    /* scale: 2; */
+    image-rendering: pixelated;
+    transition: transform 0.2s ease-in-out;
+}

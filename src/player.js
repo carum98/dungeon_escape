@@ -15,8 +15,8 @@ const SPRITES = {
 export class Player extends Entity {
 	constructor() {
 		super({
-			x: 50,
-			y: 80,
+			x: 0,
+			y: 0,
 			width: 25,
 			height: 25,
 		})

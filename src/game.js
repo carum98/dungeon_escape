@@ -13,7 +13,8 @@ export class Game {
         this.level = null
 
         LevelLoader.get('1').then(data => {
-            this.level = data
+            this.#loadData(data)
+
             onLoaded()
         })
 
@@ -30,6 +31,8 @@ export class Game {
         if (player.isColliding(level.door)) {
             if (controls.direction.up) {
                 console.log('Next level')
+
+                LevelLoader.get('2').then(this.#loadData.bind(this))
             }
 
             controls.direction.up = false
@@ -54,5 +57,15 @@ export class Game {
                 block.draw(ctx)
             })
         }
+    }
+
+    #loadData(data) {
+        this.level = data
+        
+        this.canvas.width = this.level.tilesWidth * 32
+        this.canvas.height = this.level.tilesHeight * 32
+
+        this.player.x = this.level.initialCoordsPlayer.x * 32
+        this.player.y = this.level.initialCoordsPlayer.y * 32 
     }
 }

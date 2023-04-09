@@ -1,9 +1,13 @@
-export function renderCollisionFromTiled(data, idBlock) {
+export function renderCollision(data, idBlock, tilesRow, tilesColumn) {
+    return getCoordinatesFromTiled(renderCollisionFromTiled(data, idBlock, tilesRow, tilesColumn), 1)
+}
+
+export function renderCollisionFromTiled(data, idBlock, tilesRow, tilesColumn) {
     const values = []
 
     // Convert the array into a 2D array
-    for (let i = 0; i < data.length; i += 16) {
-	    values.push(data.slice(i, i + 16))
+    for (let i = 0; i < data.length; i += tilesColumn) {
+	    values.push(data.slice(i, i + tilesRow))
     }
 
     // Remplace the 0 by null and the [idBlock] by 1
