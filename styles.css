@@ -9,8 +9,7 @@ body {
 }
 
 canvas {
-    transform-origin: top left;
-    /* scale: 2; */
+    scale: 2;
     image-rendering: pixelated;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s;
 }

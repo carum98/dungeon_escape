@@ -19,10 +19,22 @@ export class Game {
         })
 
         this.drawCollisions = false
+        this.pointInCenter = false
     }
 
     start() {
         this.controls.start()
+
+        if (this.pointInCenter) {
+            const div = document.createElement('div')
+            div.style = `
+                width: 10px;
+                height: 10px;
+                background: red;
+                position: absolute;
+            `
+            document.body.appendChild(div)
+        }
     }
 
     update() {
