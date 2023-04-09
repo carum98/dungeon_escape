@@ -66,6 +66,71 @@ const sprite = {
 
         speed: 5,
     },
+	attack: {
+		x: 0,
+		y: 224,
+		w: 80,
+		h: 65,
+
+		offsetX: 10,
+        offsetY: 20,
+
+		frames: 3,
+
+		speed: 8,
+	},
+	dead: {
+		x: 0,
+		y: 96,
+		w: 48,
+		h: 32,
+
+		offsetX: 10,
+		offsetY: 7,
+
+		frames: 4,
+
+		speed: 15,
+	},
+	hit: {
+		x: 240,
+		y: 240,
+		w: 48,
+        h: 32,
+
+        offsetX: 10,
+        offsetY: 7,
+
+        frames: 2,
+
+        speed: 8,
+	},
+	dead_floor: {
+		x: 144,
+		y: 96,
+		w: 48,
+		h: 32,
+
+		offsetX: 10,
+		offsetY: 7,
+
+		frames: 1,
+
+		speed: 0,
+	},
+	door_in: {
+		x: 0,
+		y: 176,
+		w: 48,
+		h: 48,
+
+		offsetX: 10,
+		offsetY: 25,
+
+		frames: 8,
+
+		speed: 8,
+	}
 }
 
 export class Player extends Entity {
@@ -89,6 +154,8 @@ export class Player extends Entity {
 		this.lastMovement = null
 
 		this.direction = 'right'
+
+		this.animation = null
 	}
 
 	movements(controls) {
@@ -126,7 +193,7 @@ export class Player extends Entity {
 		const isFalling = this.vy > 0
 		const isFall = this.status === 'falling' && this.vy === 0
 		
-		let status = ''
+		let status = 'idle'
 
 		if (isRunning) {
 			status = 'run'
@@ -135,15 +202,16 @@ export class Player extends Entity {
 		} else if (isFalling) {
 			status = 'falling'
 		} else if (isFall) {
-			status = 'fall'
-		} else {
-			status = 'idle'
+			this.falldownAnimation()
+		}
+
+		if (this.animation) {
+			status = this.animation
 		}
 
 		if (this.status !== status) {
 			this.status = status
 
-			this.frame = 0
 			this.frames.current = 0
         	this.frames.elapsed = 0
         	this.frames.max = sprite[this.status].frames
@@ -173,5 +241,55 @@ export class Player extends Entity {
 				}
 			}
 		}
+	}
+
+	attackAnimation() {
+		this.animation = 'attack'
+		const ms = sprite.attack.frames * sprite.attack.speed * 1000 / 60 - sprite.attack.speed
+
+		setTimeout(() => {
+			this.animation = null
+		}, ms)
+	}
+
+	hitAnimation() {
+		this.animation = 'hit'
+		const ms = sprite.hit.frames * sprite.hit.speed * 1000 / 60 - sprite.hit.speed
+
+		setTimeout(() => {
+			this.animation = null
+		}, ms)
+	}
+
+	falldownAnimation() {
+		this.animation = 'fall'
+		const ms = 150
+
+		setTimeout(() => {
+			this.animation = null
+		}, ms)
+	}
+
+	deadAnimation() {
+		this.animation = 'dead'
+
+		const ms = sprite.dead.frames * sprite.dead.speed * 1000 / 60 - sprite.dead.speed
+
+		setTimeout(() => {
+			this.animation = 'dead_floor'
+		}, ms)
+	}
+
+	doorInAnimation() {
+		return new Promise (resolve => {
+			this.animation = 'door_in'
+			const ms = sprite.door_in.frames * sprite.door_in.speed * 1000 / 60 - sprite.door_in.speed
+	
+			setTimeout(() => {
+				this.animation = null
+
+				resolve()
+			}, ms)
+		})
 	}
 }

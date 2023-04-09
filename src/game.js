@@ -25,6 +25,13 @@ export class Game {
     start() {
         this.controls.start()
 
+        document.addEventListener('keydown', e => {
+            if (['KeyE', 'Enter'].includes(e.code)) {
+                this.player.attackAnimation()
+				e.preventDefault()
+			}
+        })
+
         if (this.pointInCenter) {
             const div = document.createElement('div')
             div.style = `
@@ -44,7 +51,9 @@ export class Game {
             if (controls.direction.up) {
                 console.log('Next level')
 
-                LevelLoader.get('2').then(this.#loadData.bind(this))
+                this.player.doorInAnimation().then(() => {
+                    LevelLoader.get('2').then(this.#loadData.bind(this))
+                })
             }
 
             controls.direction.up = false
