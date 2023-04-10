@@ -1,8 +1,10 @@
 import { Door } from './door.js'
 import { GameElement } from './core/game-element.js'
+import { KingPig } from './king-pig.js'
+import { Pig } from './pig.js'
 
 export class Level {
-    constructor({ image, collisionsCoords, doorsCoords, tiles, initialCoordsPlayer, platformCoords }) {
+    constructor({ image, collisionsCoords, doorsCoords, tiles, initialCoordsPlayer, platformCoords, initialCoordsPig, initialCoordsEnemies }) {
         this.img = new Image()
         this.img.src = `./assets/img/${image}`
 
@@ -31,6 +33,20 @@ export class Level {
             y: doorsCoords.y * 32,
             width: 46,
             height: 64
+        })
+
+        this.enemies = [
+            new KingPig({
+                x: initialCoordsPig.x * 32,
+                y: initialCoordsPig.y * 32,
+            })
+        ]
+
+        initialCoordsEnemies.forEach(coords => {
+            this.enemies.push(new Pig({
+                x: coords.x * 32,
+                y: coords.y * 32,
+            }))
         })
 
         this.tilesWidth = tiles.width

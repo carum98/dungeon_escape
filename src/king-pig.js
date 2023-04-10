@@ -1,36 +1,36 @@
-import { Player } from './entities/player.js'
+import { Enemy } from './entities/enemy.js'
 import { Sprite, SpritesNames } from './core/sprite.js'
 
-export class King extends Player {
-    constructor() {
+export class KingPig extends Enemy {
+    constructor({ x, y }) {
         super({ 			
-            x: 0,
-			y: 0,
-			width: 25,
+            x,
+			y,
+			width: 18,
 			height: 26,
 			sprite: new Sprite({
-                src: './assets/img/player_king.png',
+                src: './assets/img/pig_king.png',
                 sprites: {
                     [SpritesNames.IDLE]: {
                         x: 0,
                         y: 0,
-                        w: 48,
+                        w: 32,
                         h: 32,
     
-                        offsetX: 10,
+                        offsetX: 7,
                         offsetY: 6,
     
-                        frames: 10,
+                        frames: 12,
     
                         speed: 5,
                     },
                     [SpritesNames.JUMP]: {
                         x: 0,
                         y: 64,
-                        w: 48,
+                        w: 32,
                         h: 32,
     
-                        offsetX: 10,
+                        offsetX: 7,
                         offsetY: 6,
     
                         frames: 1,
@@ -38,12 +38,12 @@ export class King extends Player {
                         speed: 0,
                     },
                     [SpritesNames.GROUND]: {
-                        x: 48,
+                        x: 32,
                         y: 64,
-                        w: 48,
+                        w: 32,
                         h: 32,
     
-                        offsetX: 10,
+                        offsetX: 7,
                         offsetY: 6,
     
                         frames: 1,
@@ -51,12 +51,12 @@ export class King extends Player {
                         speed: 350,
                     },
                     [SpritesNames.FALL]: {
-                        x: 96,
+                        x: 64,
                         y: 64,
-                        w: 48,
+                        w: 32,
                         h: 32,
     
-                        offsetX: 10,
+                        offsetX: 7,
                         offsetY: 6,
     
                         frames: 1,
@@ -66,36 +66,36 @@ export class King extends Player {
                     [SpritesNames.RUN]: {
                         x: 0,
                         y: 32,
-                        w: 48,
+                        w: 32,
                         h: 32,
     
-                        offsetX: 10,
+                        offsetX: 7,
                         offsetY: 6,
     
-                        frames: 8,
+                        frames: 6,
     
                         speed: 5,
                     },
                     [SpritesNames.ATTACK]: {
                         x: 0,
-                        y: 224,
-                        w: 80,
-                        h: 65,
+                        y: 128,
+                        w: 32,
+                        h: 32,
     
                         offsetX: 10,
                         offsetY: 20,
     
-                        frames: 3,
+                        frames: 5,
 
-                        speed: 8,
+                        speed: 5,
                     },
                     [SpritesNames.DIE]: {
                         x: 0,
                         y: 96,
-                        w: 48,
+                        w: 32,
                         h: 32,
     
-                        offsetX: 10,
+                        offsetX: 7,
                         offsetY: 6,
     
                         frames: 4,
@@ -103,12 +103,12 @@ export class King extends Player {
                         speed: 15,
                     },
                     [SpritesNames.DEAD]: {
-                        x: 144,
+                        x: 96,
                         y: 96,
-                        w: 48,
+                        w: 32,
                         h: 32,
                 
-                        offsetX: 10,
+                        offsetX: 7,
                         offsetY: 6,
                 
                         frames: 1,
@@ -116,37 +116,20 @@ export class King extends Player {
                         speed: 0,
                     },
                     [SpritesNames.HURT]: {
-                        x: 240,
-                        y: 240,
-                        w: 48,
+                        x: 160,
+                        y: 128,
+                        w: 32,
                         h: 32,
     
-                        offsetX: 10,
+                        offsetX: 7,
                         offsetY: 6,
-    
+
                         frames: 2,
     
                         speed: 8,
                     },
-                    door_in: {
-                        x: 0,
-                        y: 176,
-                        w: 48,
-                        h: 48,
-                
-                        offsetX: 10,
-                        offsetY: 25,
-                
-                        frames: 8,
-                
-                        speed: 8,
-                    }
                 }
             })
         })
-    }
-
-    async doorInAnimation() {
-        return this.sprite.startAnimation('door_in')
     }
 }

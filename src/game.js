@@ -62,6 +62,11 @@ export class Game {
         player.movements(controls)
         player.update()
         player.collision(level.collisions)
+
+        level.enemies.forEach(enemy => {
+            enemy.update()
+            enemy.collision(level.collisions)
+        })
     }
 
     draw() {
@@ -72,6 +77,10 @@ export class Game {
         level.door.draw(ctx)
 
         player.draw(ctx)
+
+        level.enemies.forEach(enemy => {
+            enemy.draw(ctx)
+        })
 
         if (this.drawCollisions) {
             level.collisions.forEach(block => {

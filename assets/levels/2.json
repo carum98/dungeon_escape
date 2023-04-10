@@ -8,6 +8,13 @@
         "x": 3,
         "y": 28
     },
+    "initialCoordsPig": {
+        "x": 5,
+        "y": 3
+    },
+    "initialCoordsEnemies": [
+
+    ],
     "doorsCoords": {
         "x": 26,
         "y": 4
