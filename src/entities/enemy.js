@@ -9,5 +9,13 @@ export class Enemy extends Entity {
             height,
             sprite,
         })
+
+        this.isDead = false
+    }
+
+    dead() {
+        this.isDead = true
+
+        return super.dead()
     }
 }

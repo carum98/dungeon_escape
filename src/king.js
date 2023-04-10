@@ -3,7 +3,7 @@ import { Sprite, SpritesNames } from './core/sprite.js'
 
 export class King extends Player {
     constructor() {
-        super({ 			
+        super({
             x: 0,
 			y: 0,
 			width: 25,
@@ -148,5 +148,20 @@ export class King extends Player {
 
     async doorInAnimation() {
         return this.sprite.startAnimation('door_in')
+    }
+
+    hitEnemy(enemy) {
+        const sizeHammer = 32
+
+        const hitbox = {
+            x: this.direction === 'right' ? (this.x + this.width + sizeHammer) : (this.x - sizeHammer),
+            y: this.y,
+            width: 20,
+            height: this.height,
+        }
+
+        if (enemy.isColliding(hitbox)) {
+            enemy.hurt().then(() => enemy.dead())
+        }
     }
 }

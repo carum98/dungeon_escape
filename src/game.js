@@ -28,6 +28,11 @@ export class Game {
         document.addEventListener('keydown', e => {
             if (['KeyE', 'Enter'].includes(e.code)) {
                 this.player.attack()
+
+                for (const enemy of this.level.enemies) {
+                    this.player.hitEnemy(enemy)
+                }
+
 				e.preventDefault()
 			}
         })
@@ -66,6 +71,10 @@ export class Game {
         level.enemies.forEach(enemy => {
             enemy.update()
             enemy.collision(level.collisions)
+
+            if (!enemy.isDead && player.isColliding(enemy)) {
+                player.hurt(enemy)
+            }
         })
     }
 
@@ -76,16 +85,14 @@ export class Game {
 
         level.door.draw(ctx)
 
-        player.draw(ctx)
-
         level.enemies.forEach(enemy => {
             enemy.draw(ctx)
         })
 
+        player.draw(ctx)
+
         if (this.drawCollisions) {
-            level.collisions.forEach(block => {
-                block.draw(ctx)
-            })
+            level.collisions.forEach(block => block.draw(ctx))
         }
     }
 
