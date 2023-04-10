@@ -27,7 +27,7 @@ export class Game {
 
         document.addEventListener('keydown', e => {
             if (['KeyE', 'Enter'].includes(e.code)) {
-                this.player.attackAnimation()
+                this.player.attack()
 				e.preventDefault()
 			}
         })

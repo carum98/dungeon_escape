@@ -1,11 +1,11 @@
 import { Game } from './src/game.js'
 import { Engine } from './src/core/engine.js'
-import { Player } from './src/player.js'
+import { King } from './src/king.js'
 
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 
-const player = new Player()
+const player = new King()
 
 const game = new Game({
 	canvas,
