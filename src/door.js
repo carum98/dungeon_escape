@@ -1,20 +1,23 @@
-import { GameElement } from './core/game-element.js'
+import { Object } from './core/object.js'
+import { Sprite } from './core/sprite.js'
 
-export class Door extends GameElement {
-    constructor({ x, y, width, height }) {
-        super({ x, y, width, height });
-    
-        this.img = new Image();
-        this.img.src = './assets/img/door.png';
+import Sprites from '../assets/sprites/objects.json' assert { type: 'json' }
+
+export class Door extends Object {
+    constructor({ x, y }) {
+        super({ 
+            x, 
+            y, 
+            width: 48, 
+            height: 64,
+            sprite: new Sprite({
+                src: './assets/img/objects.png',
+                sprites: Sprites.door
+            })
+        })
     }
-    
-    draw(ctx) {
-        ctx.drawImage(
-            this.img,
-            this.x,
-            this.y + 8,
-            this.img.width,
-            this.img.height,
-        );
+
+    open() {
+        this.startAnimation('open')
     }
 }

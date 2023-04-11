@@ -28,40 +28,6 @@ export class Sprite {
         }
     }
 
-    sync(entity) {
-        const { vx, vy } = entity
-
-        const isRunning = vx !== 0
-		const isJumping = vy < 0
-		const isFalling = vy > 0
-		const isGround = this.name === SpritesNames.FALL && vy === 0
-
-        let name = SpritesNames.IDLE
-
-		if (isRunning) {
-			name = SpritesNames.RUN
-		} else if (isJumping) {
-			name = SpritesNames.JUMP
-		} else if (isFalling) {
-			name = SpritesNames.FALL
-		} else if (isGround) {
-            this.#groundAnimation()
-		}
-
-        if (this.animation) {
-			name = this.animation
-		}
-
-        if (this.name !== name) {
-			this.name = name
-
-			this.frames.current = 0
-        	this.frames.elapsed = 0
-        	this.frames.max = this.sprites[name].frames
-        	this.frames.speed = this.sprites[name].speed
-		}
-    }
-
     update() {
         this.frames.elapsed = (this.frames.elapsed + 1) % 60
 
@@ -70,7 +36,20 @@ export class Sprite {
         }
     }
 
-    draw(ctx, entity) {
+    draw(ctx, entity, name = this.name) {
+        if (this.animation) {
+            name = this.animation
+        }
+        
+        if (this.name !== name) {
+            this.name = name
+
+            this.frames.current = 0
+            this.frames.elapsed = 0
+            this.frames.max = this.sprites[name].frames
+            this.frames.speed = this.sprites[name].speed
+        }
+
         const { x: dx, y: dy, width: dw, direction } = entity
         const { x: sx, y: sy, w: sw, h: sh, offsetX, offsetY } = this.sprites[this.name]
 
@@ -111,29 +90,5 @@ export class Sprite {
                 resolve()
 		    }, ms)
         })
-    }
-
-    attachAnimation() {
-        return this.startAnimation(SpritesNames.ATTACK)
-    }
-
-    hurtAnimation() {
-        return this.startAnimation(SpritesNames.HURT)
-    }
-
-    dieAnimation() {
-        return new Promise(async resolve => {
-            await this.startAnimation(SpritesNames.DIE)
-            this.animation = SpritesNames.DEAD
-            resolve()
-        })
-    }
-
-    #groundAnimation() {
-        this.animation = SpritesNames.GROUND
-
-        setTimeout(() => {
-            this.animation = null
-        }, 150)
     }
 }

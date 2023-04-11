@@ -1,4 +1,5 @@
 import { GameElement } from './game-element.js'
+import { SpritesNames } from './sprite.js'
 
 export class Entity extends GameElement {
     constructor({ x, y, width, height, sprite }) {
@@ -18,29 +19,33 @@ export class Entity extends GameElement {
     }
 
     update() {
+		this.sprite.update()
+
         this.vy += this.gravity
 		this.x += this.vx
 		this.y += this.vy
-
-        this.sprite.update()
     }
 
     draw(ctx) {
-        this.sprite.sync(this)
-        this.sprite.draw(ctx, this)
+        const isRunning = this.vx !== 0
+		const isJumping = this.vy < 0
+		const isFalling = this.vy > 0
+		const isGround = this.name === SpritesNames.FALL && this.vy === 0
+
+        let name = SpritesNames.IDLE
+
+		if (isRunning) {
+			name = SpritesNames.RUN
+		} else if (isJumping) {
+			name = SpritesNames.JUMP
+		} else if (isFalling) {
+			name = SpritesNames.FALL
+		} else if (isGround) {
+            this.#groundAnimation()
+		}
+
+        this.sprite.draw(ctx, this, name)
     }
-
-	attack() {
-		return this.sprite.attachAnimation()
-	}
-
-	hurt() {
-		return this.sprite.hurtAnimation()
-	}
-
-	dead() {
-		return this.sprite.dieAnimation()
-	}
 
     movements(controls) {
         const { direction } = controls
@@ -84,5 +89,29 @@ export class Entity extends GameElement {
 			}
 		}
 	}
+
+	attack() {
+		return this.sprite.startAnimation(SpritesNames.ATTACK)
+	}
+
+	hurt() {
+		return this.sprite.startAnimation(SpritesNames.HURT)
+	}
+
+	dead() {
+		return new Promise(async resolve => {
+            await this.sprite.startAnimation(SpritesNames.DIE)
+            this.sprite.animation = SpritesNames.DEAD
+            resolve()
+        })
+	}
+
+	#groundAnimation() {
+        this.animation = SpritesNames.GROUND
+
+        setTimeout(() => {
+            this.animation = null
+        }, 150)
+    }
 }
 

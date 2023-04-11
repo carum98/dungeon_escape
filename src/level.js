@@ -31,8 +31,6 @@ export class Level {
         this.door = new Door({
             x: doorsCoords.x * 32,
             y: doorsCoords.y * 32,
-            width: 46,
-            height: 64
         })
 
         this.enemies = [

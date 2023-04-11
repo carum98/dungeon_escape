@@ -55,7 +55,7 @@ export class Game {
         if (player.isColliding(level.door)) {
             if (controls.direction.up) {
                 console.log('Next level')
-
+                this.level.door.open()
                 this.player.doorInAnimation().then(() => {
                     LevelLoader.get('2').then(this.#loadData.bind(this))
                 })
@@ -67,6 +67,8 @@ export class Game {
         player.movements(controls)
         player.update()
         player.collision(level.collisions)
+
+        level.door.update()
 
         level.enemies.forEach(enemy => {
             enemy.update()
