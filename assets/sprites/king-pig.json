@@ -1,0 +1,119 @@
+{
+    "idle": {
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 7,
+        "offsetY": 6,
+
+        "frames": 12,
+
+        "speed": 5
+    },
+    "jump": {
+        "x": 0,
+        "y": 64,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 7,
+        "offsetY": 6,
+
+        "frames": 1,
+
+        "speed": 0
+    },
+    "ground": {
+        "x": 32,
+        "y": 64,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 7,
+        "offsetY": 6,
+
+        "frames": 1,
+
+        "speed": 350
+    },
+    "fall": {
+        "x": 64,
+        "y": 64,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 7,
+        "offsetY": 6,
+
+        "frames": 1,
+
+        "speed": 0
+    },
+    "run": {
+        "x": 0,
+        "y": 32,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 7,
+        "offsetY": 6,
+
+        "frames": 6,
+
+        "speed": 5
+    },
+    "attack": {
+        "x": 0,
+        "y": 128,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 10,
+        "offsetY": 20,
+
+        "frames": 5,
+
+        "speed": 5
+    },
+    "die": {
+        "x": 0,
+        "y": 96,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 7,
+        "offsetY": 6,
+
+        "frames": 4,
+
+        "speed": 15
+    },
+    "dead": {
+        "x": 96,
+        "y": 96,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 7,
+        "offsetY": 6,
+
+        "frames": 1,
+
+        "speed": 0
+    },
+    "hurt": {
+        "x": 160,
+        "y": 128,
+        "w": 32,
+        "h": 32,
+
+        "offsetX": 7,
+        "offsetY": 6,
+
+        "frames": 2,
+
+        "speed": 8
+    }
+}
