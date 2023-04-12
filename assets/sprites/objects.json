@@ -67,5 +67,61 @@
     
             "speed": 8
         }
+    },
+    "heart": {
+        "idle": {
+            "x": 96,
+            "y": 96,
+            "w": 16,
+            "h": 16,
+    
+            "offsetX": 0,
+            "offsetY": 0,
+    
+            "frames": 8,
+    
+            "speed": 8
+        },
+        "hit": {
+            "x": 224,
+            "y": 96,
+            "w": 16,
+            "h": 16,
+    
+            "offsetX": 0,
+            "offsetY": 0,
+    
+            "frames": 2,
+    
+            "speed": 5
+        }
+    },
+    "diamond": {
+        "idle": {
+            "x": 96,
+            "y": 112,
+            "w": 16,
+            "h": 16,
+    
+            "offsetX": 0,
+            "offsetY": 0,
+    
+            "frames": 10,
+    
+            "speed": 10
+        },
+        "hit": {
+            "x": 256,
+            "y": 112,
+            "w": 16,
+            "h": 16,
+    
+            "offsetX": 0,
+            "offsetY": 0,
+    
+            "frames": 2,
+    
+            "speed": 5
+        }
     }
 }

@@ -26,6 +26,8 @@ export class Sprite {
             max: 0,
             speed: 0,
         }
+
+        this.#setNewFrame(this.name)
     }
 
     update() {

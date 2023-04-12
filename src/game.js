@@ -82,6 +82,18 @@ export class Game {
         level.objects.forEach(object => {
             object.update()
         })
+
+        level.collectible.forEach(collectible => {
+            collectible.update()
+            collectible.collision(level.collisions)
+
+            if (!collectible.isCollected && player.isColliding(collectible)) {
+                collectible.collected().then(() => {
+                    const index = level.collectible.indexOf(collectible)
+                    level.collectible.splice(index, 1)
+                })
+            }
+        })
     }
 
     draw() {
@@ -100,6 +112,10 @@ export class Game {
         })
 
         player.draw(ctx)
+
+        level.collectible.forEach(collectible => {
+            collectible.draw(ctx)
+        })
 
         if (this.drawCollisions) {
             level.collisions.forEach(block => block.draw(ctx))

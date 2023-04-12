@@ -3,6 +3,8 @@ import { GameElement } from './core/game-element.js'
 import { KingPig } from './king-pig.js'
 import { Pig } from './pig.js'
 import { Cannon } from './cannon.js'
+import { Heart } from './heart.js'
+import { Diamond } from './diamond.js'
 
 export class Level {
     constructor({ 
@@ -66,6 +68,18 @@ export class Level {
                 y: coords.y * 32,
             }))
         })
+
+        this.collectible = []
+
+        this.collectible.push(new Heart({
+            x: 32 * 8,
+            y: 32 * 6,
+        }))
+
+        this.collectible.push(new Diamond({
+            x: 32 * 7,
+            y: 32 * 4,
+        }))
 
         this.tilesWidth = tiles.width
         this.tilesHeight = tiles.height
