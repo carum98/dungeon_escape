@@ -42,12 +42,7 @@ export class Sprite {
         }
         
         if (this.name !== name) {
-            this.name = name
-
-            this.frames.current = 0
-            this.frames.elapsed = 0
-            this.frames.max = this.sprites[name].frames
-            this.frames.speed = this.sprites[name].speed
+            this.#setNewFrame(name)
         }
 
         const { x: dx, y: dy, width: dw, direction } = entity
@@ -90,5 +85,19 @@ export class Sprite {
                 resolve()
 		    }, ms)
         })
+    }
+
+    stopAnimation() {
+        this.animation = null
+        this.#setNewFrame(SpritesNames.IDLE)
+    }
+
+    #setNewFrame(name) {
+        this.name = name
+
+        this.frames.current = 0
+        this.frames.elapsed = 0
+        this.frames.max = this.sprites[this.name].frames
+        this.frames.speed = this.sprites[this.name].speed
     }
 }

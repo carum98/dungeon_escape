@@ -15,5 +15,7 @@ export class Pig extends Enemy {
                 sprites: Sprites
             })
         })
+
+        this.direction = 'left'
     }
 }

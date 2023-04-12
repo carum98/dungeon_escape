@@ -22,7 +22,7 @@ export class King extends Player {
     }
 
     hitEnemy(enemy) {
-        const sizeHammer = 32
+        const sizeHammer = 20
 
         const hitbox = {
             x: this.direction === 'right' ? (this.x + this.width + sizeHammer) : (this.x - sizeHammer),

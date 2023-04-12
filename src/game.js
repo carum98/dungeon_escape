@@ -78,6 +78,10 @@ export class Game {
                 player.hurt(enemy)
             }
         })
+
+        level.objects.forEach(object => {
+            object.update()
+        })
     }
 
     draw() {
@@ -89,6 +93,10 @@ export class Game {
 
         level.enemies.forEach(enemy => {
             enemy.draw(ctx)
+        })
+
+        level.objects.forEach(object => {
+            object.draw(ctx)
         })
 
         player.draw(ctx)

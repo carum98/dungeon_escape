@@ -19,4 +19,8 @@ export class Object extends GameElement {
     startAnimation(name) {
         return this.sprite.startAnimation(name)
     }
+
+    stopAnimation() {
+        return this.sprite.stopAnimation()
+    }
 }

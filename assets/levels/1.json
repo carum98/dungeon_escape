@@ -22,6 +22,12 @@
             "y": 3
         }
     ],
+    "initialCoordsCannon": [
+        {
+            "x": 5,
+            "y": 3
+        }
+    ],
     "doorsCoords": {
         "x": 12,
         "y": 5

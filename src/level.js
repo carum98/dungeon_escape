@@ -2,9 +2,20 @@ import { Door } from './door.js'
 import { GameElement } from './core/game-element.js'
 import { KingPig } from './king-pig.js'
 import { Pig } from './pig.js'
+import { Cannon } from './cannon.js'
 
 export class Level {
-    constructor({ image, collisionsCoords, doorsCoords, tiles, initialCoordsPlayer, platformCoords, initialCoordsPig, initialCoordsEnemies }) {
+    constructor({ 
+        image, 
+        collisionsCoords, 
+        doorsCoords, 
+        tiles, 
+        initialCoordsPlayer, 
+        platformCoords, 
+        initialCoordsPig, 
+        initialCoordsEnemies,
+        initialCoordsCannon,
+    }) {
         this.img = new Image()
         this.img.src = `./assets/img/${image}`
 
@@ -42,6 +53,15 @@ export class Level {
 
         initialCoordsEnemies.forEach(coords => {
             this.enemies.push(new Pig({
+                x: coords.x * 32,
+                y: coords.y * 32,
+            }))
+        })
+
+        this.objects = []
+
+        initialCoordsCannon.forEach(coords => {
+            this.objects.push(new Cannon({
                 x: coords.x * 32,
                 y: coords.y * 32,
             }))

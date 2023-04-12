@@ -39,5 +39,33 @@
     
             "speed": 5
         }
+    },
+    "cannon": {
+        "idle": {
+            "x": 80,
+            "y": 64,
+            "w": 32,
+            "h": 32,
+    
+            "offsetX": 0,
+            "offsetY": 0,
+    
+            "frames": 1,
+    
+            "speed": 0
+        },
+        "fire": {
+            "x": 112,
+            "y": 64,
+            "w": 48,
+            "h": 32,
+    
+            "offsetX": 16,
+            "offsetY": 0,
+    
+            "frames": 4,
+    
+            "speed": 8
+        }
     }
 }

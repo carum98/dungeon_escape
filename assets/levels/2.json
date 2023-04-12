@@ -15,6 +15,9 @@
     "initialCoordsEnemies": [
 
     ],
+    "initialCoordsCannon": [
+
+    ],
     "doorsCoords": {
         "x": 26,
         "y": 4
