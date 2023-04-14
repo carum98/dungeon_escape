@@ -1,14 +1,16 @@
 import { Game } from './src/game.js'
 import { Engine } from './src/core/engine.js'
 import { King } from './src/king.js'
-
-const canvas = document.getElementById('canvas')
-const ctx = canvas.getContext('2d')
+import { Hub } from './src/hub.js'
 
 const player = new King()
 
+const hub = new Hub({
+	canvas: document.getElementById('hub')
+})
+
 const game = new Game({
-	canvas,
+	canvas: document.getElementById('canvas'),
 	player,
 	onLoaded: () => {
 		game.start()
@@ -17,16 +19,9 @@ const game = new Game({
 })
 
 const loop = new Engine(() => {
-	ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-	ctx.fillStyle = 'black'
-	ctx.fillRect(0, 0, canvas.width, canvas.height)
-
 	game.update()
 	game.draw()
-
-	const x = -(player.x - canvas.width / 2).toFixed(0)
-	const y = -(player.y - canvas.height / 2).toFixed(0)
-
-	canvas.style.transform = `translate(${x}px, ${y}px)`
+	
+	hub.update()
+	hub.draw()
 })

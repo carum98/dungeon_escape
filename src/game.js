@@ -1,3 +1,4 @@
+import { Camera } from './camera.js'
 import { Controls } from './core/controls.js'
 import { LevelLoader } from './level.js'
 
@@ -20,6 +21,11 @@ export class Game {
 
         this.drawCollisions = false
         this.pointInCenter = false
+
+        this.camera = new Camera({
+            canvas,
+            player
+        })
     }
 
     start() {
@@ -94,10 +100,14 @@ export class Game {
                 })
             }
         })
+
+        this.camera.sync()
     }
 
     draw() {
-        const { player, ctx, level } = this
+        const { player, canvas, ctx, level } = this
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
 
         ctx.drawImage(level.img, 0, 0)
 

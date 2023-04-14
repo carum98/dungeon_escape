@@ -11,12 +11,12 @@ export const SpritesNames = {
 }
 
 export class Sprite {
-    constructor({ src, sprites }) {
+    constructor({ src, sprites, initialSprite = SpritesNames.IDLE }) {
         this.image = new Image()
         this.image.src = src
 
         this.sprites = sprites
-        this.name = SpritesNames.IDLE
+        this.name = initialSprite
 
         this.animation = null
 
