@@ -66,6 +66,32 @@
             "frames": 4,
     
             "speed": 8
+        },
+        "ball": {
+            "x": 80,
+            "y": 112,
+            "w": 16,
+            "h": 16,
+    
+            "offsetX": 0,
+            "offsetY": 0,
+    
+            "frames": 1,
+    
+            "speed": 0
+        },
+        "explosion": {
+            "x": 0,
+            "y": 128,
+            "w": 64,
+            "h": 64,
+    
+            "offsetX": 16,
+            "offsetY": 16,
+    
+            "frames": 6,
+    
+            "speed": 10
         }
     },
     "heart": {

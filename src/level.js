@@ -86,6 +86,11 @@ export class Level {
 
         this.initialCoordsPlayer = initialCoordsPlayer
 
+        setInterval(() => {
+            // Fire cannon
+            this.objects[0].fire(this.collisions)
+        }, 5000)
+
         Object.freeze(this)
     }
 }
