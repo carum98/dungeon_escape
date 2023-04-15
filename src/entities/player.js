@@ -9,6 +9,8 @@ export class Player extends Entity {
             height,
             sprite,
         })
+
+        this.isDead = false
     }
 
     hurt(enemy) {
@@ -19,5 +21,17 @@ export class Player extends Entity {
         if (this.y < enemy.y) this.y -= recoil
     
         return super.hurt()
+    }
+
+    dead() {
+        this.isDead = true
+
+        return super.dead()
+    }
+
+    movements(controls) {
+        if (this.isDead) return
+
+        super.movements(controls)
     }
 }

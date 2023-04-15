@@ -1,11 +1,14 @@
 import { Camera } from './camera.js'
 import { Controls } from './core/controls.js'
+import { Diamond } from './diamond.js'
+import { Heart } from './heart.js'
 import { LevelLoader } from './level.js'
 
 export class Game {
-    constructor({ canvas, player, onLoaded }) {
+    constructor({ canvas, player, onLoaded, state }) {
         this.canvas = canvas
         this.player = player
+        this.state = state
 
         this.ctx = canvas.getContext('2d')
 
@@ -56,7 +59,7 @@ export class Game {
     }
 
     update() {
-        const { player, controls, level } = this
+        const { player, controls, level, state } = this
 
         if (player.isColliding(level.door)) {
             if (controls.direction.up) {
@@ -76,12 +79,17 @@ export class Game {
 
         level.door.update()
 
-        level.enemies.forEach(enemy => {
+        level.enemies.forEach(async enemy => {
             enemy.update()
             enemy.collision(level.collisions)
 
             if (!enemy.isDead && player.isColliding(enemy)) {
-                player.hurt(enemy)
+                state.removeLife()
+                await player.hurt(enemy)
+                
+                if (state.isGameOver) {
+                    player.dead()
+                }
             }
         })
 
@@ -94,6 +102,13 @@ export class Game {
             collectible.collision(level.collisions)
 
             if (!collectible.isCollected && player.isColliding(collectible)) {
+                if (collectible instanceof Heart) {
+                    state.addLife()
+                } else if (collectible instanceof Diamond) {
+                    state.addDiamond()
+                }
+                
+
                 collectible.collected().then(() => {
                     const index = level.collectible.indexOf(collectible)
                     level.collectible.splice(index, 1)

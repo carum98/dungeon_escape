@@ -3,12 +3,11 @@ import { Sprite } from './core/sprite.js'
 import Sprites from '../assets/sprites/objects.json' assert { type: 'json' }
 
 export class Hub {
-    constructor({ canvas }) {
+    constructor({ canvas, state }) {
         this.canvas = canvas
         this.ctx = canvas.getContext('2d')
 
-        this.lives = 3
-        this.diamonds = 0
+        this.state = state
 
         this.heart = new Sprite({
             src: './assets/img/objects.png',
@@ -37,7 +36,8 @@ export class Hub {
     }
 
     draw() {
-        const { ctx, canvas, lives, diamonds } = this
+        const { ctx, canvas } = this
+        const { lives, diamonds } = this.state
         
         ctx.clearRect(0, 0, canvas.width, canvas.height)
 
