@@ -22,9 +22,6 @@ export class Game {
             onLoaded()
         })
 
-        this.drawCollisions = false
-        this.pointInCenter = false
-
         this.camera = new Camera({
             canvas,
             player
@@ -45,17 +42,6 @@ export class Game {
 				e.preventDefault()
 			}
         })
-
-        if (this.pointInCenter) {
-            const div = document.createElement('div')
-            div.style = `
-                width: 10px;
-                height: 10px;
-                background: red;
-                position: absolute;
-            `
-            document.body.appendChild(div)
-        }
     }
 
     update() {
@@ -124,27 +110,9 @@ export class Game {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-        ctx.drawImage(level.img, 0, 0)
-
-        level.door.draw(ctx)
-
-        level.enemies.forEach(enemy => {
-            enemy.draw(ctx)
-        })
-
-        level.objects.forEach(object => {
-            object.draw(ctx)
-        })
-
+        level.drawBack(ctx)
         player.draw(ctx)
-
-        level.collectible.forEach(collectible => {
-            collectible.draw(ctx)
-        })
-
-        if (this.drawCollisions) {
-            level.collisions.forEach(block => block.draw(ctx))
-        }
+        level.drawFront(ctx)
     }
 
     #loadData(data) {

@@ -93,6 +93,24 @@ export class Level {
 
         Object.freeze(this)
     }
+
+    drawBack(ctx) {
+        ctx.drawImage(this.img, 0, 0);
+
+        [
+            this.door,
+            ...this.enemies, 
+            ...this.objects,
+        ]
+        .forEach(item => item.draw(ctx))
+    }
+
+    drawFront(ctx) {
+        [
+            ...this.collectible,
+        ]
+        .forEach(item => item.draw(ctx))
+    }
 }
 
 export class LevelLoader {
