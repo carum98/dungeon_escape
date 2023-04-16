@@ -68,8 +68,11 @@ export class Game {
         level.enemies.forEach(async enemy => {
             enemy.update()
             enemy.collision(level.collisions)
+            enemy.follow(player)
 
             if (!enemy.isDead && player.isColliding(enemy)) {
+                enemy.attack()
+
                 state.removeLife()
                 await player.hurt(enemy)
                 
