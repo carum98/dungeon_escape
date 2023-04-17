@@ -1,4 +1,5 @@
 import { Entity } from '../core/entitiy.js'
+import { Sound } from '../core/sound.js'
 
 export class Player extends Entity {
     constructor({ x, y, width, height, sprite }) {
@@ -14,6 +15,8 @@ export class Player extends Entity {
     }
 
     hurt(enemy) {
+        Sound.play(Sound.name.player_hurt)
+
         const recoil = 32
 
         if (this.x < enemy.x) this.x -= recoil

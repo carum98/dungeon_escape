@@ -1,4 +1,5 @@
 import { Entity } from '../core/entitiy.js'
+import { Sound } from '../core/sound.js'
 
 export class Enemy extends Entity {
     constructor({ x, y, width, height, sprite }) {
@@ -28,6 +29,12 @@ export class Enemy extends Entity {
         setTimeout(() => this.velocity = 1, 1000)
 
         return super.attack()
+    }
+
+    hurt() {
+        Sound.play(Sound.name.enemy_hurt)
+
+        return super.hurt()
     }
 
     update() {

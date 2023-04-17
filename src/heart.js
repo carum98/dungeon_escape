@@ -1,5 +1,6 @@
 import { Collectible } from './core/collectible.js'
 import { Sprite } from './core/sprite.js'
+import { Sound } from './core/sound.js'
 
 import Sprites from '../assets/sprites/objects.json' assert { type: 'json' }
 
@@ -15,5 +16,11 @@ export class Heart extends Collectible {
                 sprites: Sprites.heart
             })
         })
+    }
+
+    collected() {
+        Sound.play(Sound.name.heart)
+
+        return super.collected()
     }
 }

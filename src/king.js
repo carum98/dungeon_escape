@@ -1,5 +1,6 @@
 import { Player } from './entities/player.js'
 import { Sprite } from './core/sprite.js'
+import { Sound } from './core/sound.js'
 
 import Sprites from '../assets/sprites/king.json' assert { type: 'json' }
 
@@ -22,6 +23,8 @@ export class King extends Player {
     }
 
     hitEnemy(enemy) {
+        Sound.play(Sound.name.attack)
+
         const sizeHammer = 35
 
         const hitbox = {
