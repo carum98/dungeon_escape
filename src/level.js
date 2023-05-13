@@ -17,6 +17,8 @@ export class Level {
         initialCoordsPig, 
         initialCoordsEnemies,
         initialCoordsCannon,
+        heartCoords,
+        diamondCoords,
     }) {
         this.img = new Image()
         this.img.src = `./assets/img/${image}`
@@ -71,15 +73,19 @@ export class Level {
 
         this.collectible = []
 
-        this.collectible.push(new Heart({
-            x: 32 * 8,
-            y: 32 * 6,
-        }))
+        heartCoords.forEach(coords => {
+            this.collectible.push(new Heart({
+                x: coords.x * 32,
+                y: coords.y * 32,
+            }))
+        })
 
-        this.collectible.push(new Diamond({
-            x: 32 * 7,
-            y: 32 * 4,
-        }))
+        diamondCoords.forEach(coords => {
+            this.collectible.push(new Diamond({
+                x: coords.x * 32,
+                y: coords.y * 32,
+            }))
+        })
 
         this.tilesWidth = tiles.width
         this.tilesHeight = tiles.height
@@ -88,7 +94,10 @@ export class Level {
 
         setInterval(() => {
             // Fire cannon
-            this.objects[0].fire(this.collisions)
+            const cannon = this.objects[0]
+            if (cannon instanceof Cannon) {
+                cannon.fire(this.collisions)
+            }
         }, 5000)
 
         Object.freeze(this)

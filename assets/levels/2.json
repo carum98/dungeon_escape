@@ -18,6 +18,18 @@
     "initialCoordsCannon": [
 
     ],
+    "heartCoords": [
+        {
+            "x": 12,
+            "y": 2
+        }
+    ],
+    "diamondCoords": [
+        {
+            "x": 8,
+            "y": 3
+        }
+    ],
     "doorsCoords": {
         "x": 26,
         "y": 4
