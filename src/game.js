@@ -16,7 +16,7 @@ export class Game {
 
         this.level = null
 
-        LevelLoader.get('1').then(data => {
+        LevelLoader.get(this.state.level).then(data => {
             this.#loadData(data)
 
             onLoaded()
@@ -50,9 +50,10 @@ export class Game {
         if (player.isColliding(level.door)) {
             if (controls.direction.up) {
                 console.log('Next level')
+                this.state.nextLevel()
                 this.level.door.open()
                 this.player.doorInAnimation().then(() => {
-                    LevelLoader.get('2').then(this.#loadData.bind(this))
+                    LevelLoader.get(this.state.level).then(this.#loadData.bind(this))
                 })
             }
 

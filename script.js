@@ -3,6 +3,7 @@ import { Engine } from './src/core/engine.js'
 import { King } from './src/king.js'
 import { Hub } from './src/hub.js'
 import { State } from './src/state.js'
+import { renderCollision } from './src/util.js'
 
 const canvasHub = document.getElementById('hub')
 const canvasGame = document.getElementById('canvas')
@@ -33,3 +34,21 @@ const loop = new Engine(() => {
 	hub.update()
 	hub.draw()
 })
+
+const values = renderCollision([0, 0, 0, 7, 7, 7, 0, 0, 0, 0,
+	0, 0, 7, 0, 0, 0, 7, 7, 7, 0,
+	0, 0, 7, 0, 0, 0, 0, 0, 0, 7,
+	0, 0, 7, 0, 0, 0, 0, 0, 0, 7,
+	0, 0, 7, 7, 9, 0, 0, 7, 7, 0,
+	0, 7, 0, 0, 0, 0, 0, 0, 0, 7,
+	0, 7, 0, 0, 0, 9, 9, 0, 0, 7,
+	0, 7, 0, 0, 0, 0, 0, 0, 0, 7,
+	0, 0, 7, 0, 9, 7, 7, 7, 7, 0,
+	0, 0, 7, 0, 0, 7, 7, 7, 0, 0,
+	0, 7, 0, 9, 0, 0, 0, 0, 7, 0,
+	0, 7, 0, 0, 9, 9, 0, 0, 7, 0,
+	0, 0, 7, 0, 0, 0, 0, 9, 7, 0,
+	0, 7, 0, 0, 0, 0, 0, 7, 0, 0,
+	0, 0, 7, 7, 7, 7, 7, 0, 0, 0], 9, 15, 10)
+
+console.log(values)

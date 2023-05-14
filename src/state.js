@@ -2,6 +2,8 @@ export class State {
     constructor() {
         this.lives = 3
         this.diamonds = 0
+
+        this.level = 1
     }
 
     addDiamond() {
@@ -16,6 +18,10 @@ export class State {
         if (this.isMaxLives) return
 
         this.lives++
+    }
+
+    nextLevel() {
+        this.level++
     }
 
     get isGameOver() {
