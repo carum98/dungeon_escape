@@ -31,4 +31,15 @@ export class State {
     get isMaxLives() {
         return this.lives === 3
     }
+
+    get isMaxLevel() {
+        return this.level === 4
+    }
+
+    reset() {
+        this.lives = 3
+        this.diamonds = 0
+
+        this.level = 0
+    }
 }

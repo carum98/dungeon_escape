@@ -52,6 +52,13 @@ export class Game {
                 console.log('Next level')
                 this.state.nextLevel()
                 this.level.door.open()
+
+                if (this.state.isMaxLevel) {
+                    alert('You win!')
+                    this.state.reset()
+                    return
+                }
+
                 this.player.doorInAnimation().then(() => {
                     LevelLoader.get(this.state.level).then(this.#loadData.bind(this))
                 })
